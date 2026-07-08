@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
+<script src="./assets/js/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -227,7 +227,7 @@
         <div data-reveal style="font-family: var(--df); font-weight: 400; font-size: clamp(52px, 9vw, 130px); line-height: 1.02; margin-bottom: 48px;">{{ t.letsTalk }} <span style="font-style: italic; color: var(--accent);">↗</span></div>
         <div data-reveal style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
           <a href="mailto:hello@thantzinmin.dev" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; background: var(--accent); color: #221d15; text-decoration: none; border-radius: 999px; padding: 16px 30px; transition: transform 0.25s, background 0.25s;" style-hover="transform: translateY(-3px); background: #f6f1e7;">hello@thantzinmin.dev</a>
-          <a href="#" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">GITHUB ↗</a>
+          <a href="https://github.com/Tommyzizii" target="_blank" rel="noopener" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">GITHUB ↗</a>
           <a href="#" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">LINKEDIN ↗</a>
         </div>
         <div style="display: flex; justify-content: space-between; margin-top: 90px; padding-top: 24px; border-top: 1px solid rgba(246,241,231,0.15); font-family: var(--mono); font-size: 12px; color: rgba(246,241,231,0.45);">
@@ -269,6 +269,7 @@
             <span style="font-family: var(--mono); font-size: 12px; padding: 7px 14px; border: 1px solid rgba(34,29,21,0.2); border-radius: 999px; color: #52493a;">{{ s }}</span>
           </sc-for>
         </div>
+        <a href="{{ detail.repoUrl }}" target="_blank" rel="noopener" style="display: block; text-align: center; margin-top: 22px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; text-decoration: none; background: var(--ink); color: #f6f1e7; padding: 12px 18px; border-radius: 999px; transition: background 0.25s;" style-hover="background: var(--accent)">{{ t.viewRepo }}</a>
       </div>
     </div>
 
@@ -313,7 +314,7 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'Resume', download: 'DOWNLOAD PDF ↓',
         contactKicker: 'Get in touch', letsTalk: "Let's talk", location: 'Yangon / Remote',
-        backAll: '← ALL WORK', highlights: 'Highlights', stackLabel: 'Stack', next: 'Next project',
+        backAll: '← ALL WORK', highlights: 'Highlights', stackLabel: 'Stack', next: 'Next project', viewRepo: 'View on GitHub ↗',
       },
       th: {
         navWork: 'ผลงาน', navTools: 'เครื่องมือ', navAbout: 'เกี่ยวกับ', navResume: 'ประวัติย่อ', navContact: 'ติดต่อ',
@@ -330,7 +331,7 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ประวัติย่อ', download: 'ดาวน์โหลด PDF ↓',
         contactKicker: 'ติดต่อ', letsTalk: 'คุยกันเลย', location: 'ย่างกุ้ง / ทำงานทางไกล',
-        backAll: '← ผลงานทั้งหมด', highlights: 'ไฮไลต์', stackLabel: 'เทคโนโลยี', next: 'โปรเจกต์ถัดไป',
+        backAll: '← ผลงานทั้งหมด', highlights: 'ไฮไลต์', stackLabel: 'เทคโนโลยี', next: 'โปรเจกต์ถัดไป', viewRepo: 'ดูบน GitHub ↗',
       },
       my: {
         navWork: 'လက်ရာများ', navTools: 'ကိရိယာများ', navAbout: 'အကြောင်း', navResume: 'ကိုယ်ရေးအကျဉ်း', navContact: 'ဆက်သွယ်ရန်',
@@ -347,41 +348,47 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ကိုယ်ရေးအကျဉ်း', download: 'PDF ဒေါင်းလုဒ် ↓',
         contactKicker: 'ဆက်သွယ်ရန်', letsTalk: 'စကားပြောကြရအောင်', location: 'ရန်ကုန် / Remote',
-        backAll: '← လက်ရာအားလုံး', highlights: 'အဓိကအချက်များ', stackLabel: 'နည်းပညာများ', next: 'နောက်ပရောဂျက်',
+        backAll: '← လက်ရာအားလုံး', highlights: 'အဓိကအချက်များ', stackLabel: 'နည်းပညာများ', next: 'နောက်ပရောဂျက်', viewRepo: 'GitHub တွင်ကြည့်ရန် ↗',
       },
     };
 
     this.data = [
-      { id: 'k8s', num: '01', year: '2025', tag: 'CLOUD', role: 'Lead Engineer', featured: true, big: true, imgLabel: 'platform diagram', metric: 'failover 40min → 90s',
-        title: 'Multi-region Kubernetes platform', summary: 'Migrated 40+ services from single-region VMs to a multi-region EKS platform.',
-        overview: 'A single-region VM fleet had become the biggest availability risk. I led the design and migration to a multi-region Kubernetes platform on EKS, moving 40+ services with zero customer-facing downtime.',
-        bullets: ['Cut p99 failover time from ~40 minutes (manual) to under 90 seconds (automated)', 'Zero-downtime migration of 40+ services over 5 months', 'Reduced monthly compute spend 28% via right-sizing and spot node groups'],
-        stack: ['AWS EKS', 'Terraform', 'ArgoCD', 'Istio', 'Karpenter'] },
-      { id: 'cicd', num: '02', year: '2025', tag: 'DEVOPS', role: 'Platform Engineer', featured: true, imgLabel: 'pipeline screenshot', metric: 'deploys 45min → 8min',
-        title: 'CI/CD pipeline overhaul', summary: 'Rebuilt a 45-minute flaky pipeline into an 8-minute deploy engineers trust.',
-        overview: 'Deploys were slow, flaky, and feared. I rebuilt the pipeline from scratch: parallelized test stages, remote build caching, and progressive delivery with automatic rollback.',
-        bullets: ['Deploy time down from 45 min to 8 min', 'Deploy frequency up 6× within one quarter', 'Automatic canary rollback removed the need for release-night on-call'],
-        stack: ['GitHub Actions', 'Bazel remote cache', 'Argo Rollouts', 'Datadog'] },
-      { id: 'api', num: '03', year: '2023', tag: 'SOFTWARE', role: 'Backend Engineer', featured: true, imgLabel: 'architecture diagram', metric: '30k events/sec sustained',
-        title: 'High-throughput ingestion API', summary: 'Go service handling 30k events/sec with backpressure and exactly-once delivery.',
-        overview: 'Built a Go ingestion service for telemetry events: 30k events/sec sustained, graceful backpressure, and exactly-once delivery into the analytics warehouse.',
-        bullets: ['30k events/sec sustained on 3 modest instances', 'Exactly-once semantics via idempotency keys and transactional outbox', 'p99 latency held under 45ms at peak load'],
-        stack: ['Go', 'Kafka', 'PostgreSQL', 'Redis', 'gRPC'] },
-      { id: 'iac', num: '04', year: '2024', tag: 'CLOUD', role: 'Engineer', imgLabel: 'module registry', metric: 'provisioning: days → 1hr',
-        title: 'Terraform module library', summary: 'Versioned, tested IaC modules adopted by 6 teams as the paved road.',
-        overview: 'Every team was hand-rolling its own infrastructure with drift everywhere. I built a versioned library of tested, opinionated Terraform modules — the paved road for provisioning.',
-        bullets: ['Adopted by 6 teams; new service provisioning from days to under an hour', 'Policy-as-code checks catch misconfigurations before apply', '100% of modules covered by automated plan/apply tests'],
-        stack: ['Terraform', 'Terratest', 'OPA / Conftest', 'AWS'] },
-      { id: 'obs', num: '05', year: '2024', tag: 'DEVOPS', role: 'Engineer', imgLabel: 'dashboards', metric: 'MTTR down 52%',
-        title: 'Observability stack', summary: 'Unified metrics, logs, and traces; MTTR down by half.',
-        overview: 'Debugging meant grepping logs across five systems. I consolidated metrics, logs, and traces into one OpenTelemetry-based stack with service-level dashboards and SLO alerts.',
-        bullets: ['Mean time to resolution down 52%', 'Replaced 5 tools with one stack, saving ~$60k/yr in licenses', 'SLO-based alerting cut pager noise by 70%'],
-        stack: ['OpenTelemetry', 'Prometheus', 'Grafana', 'Loki', 'Tempo'] },
-      { id: 'idp', num: '06', year: '2023', tag: 'SOFTWARE', role: 'Engineer', imgLabel: 'portal UI', metric: 'scaffolding: 4hr → 10min',
-        title: 'Internal developer portal', summary: 'Self-service portal for scaffolding, deploys, and ownership metadata.',
-        overview: 'Built an internal portal where engineers scaffold new services, trigger deploys, and see ownership and runbook metadata — replacing a wiki and a lot of Slack questions.',
-        bullets: ['Service scaffolding from half a day to 10 minutes', 'Ownership metadata coverage went from 40% to 98% of services', 'Onboarding time for new engineers cut roughly in half'],
-        stack: ['TypeScript', 'React', 'Node.js', 'Backstage', 'PostgreSQL'] },
+      { id: 'media-streaming', num: '01', year: '2026', tag: 'CLOUD', role: 'Cloud Architect', featured: true, big: true, imgLabel: 'architecture diagram', metric: 'multi-AZ, auto-scaling design',
+        title: 'Cloud-Native Media Streaming Platform', summary: 'AWS backend architecture for a YouTube-like streaming platform, built for high availability and viral traffic.',
+        overview: 'Designed a cloud-native backend architecture for a YouTube-like video streaming platform on AWS — built to handle large concurrent audiences, viral traffic spikes, and automatic scaling across multiple Availability Zones.',
+        bullets: ['Designed a multi-AZ AWS architecture (VPC, ALB, Auto Scaling, EC2) to absorb traffic spikes without downtime', 'Separated public/private subnets with a NAT Gateway and bastion host for secure backend access', 'S3 for video storage and RDS PostgreSQL for metadata, with CloudWatch alarms watching infrastructure health'],
+        stack: ['AWS VPC', 'EC2 & Auto Scaling', 'Application Load Balancer', 'Amazon S3', 'RDS (PostgreSQL)', 'CloudWatch'],
+        repoUrl: 'https://github.com/Tommyzizii/aws-native-media-streaming-platform' },
+      { id: 'devops-lab', num: '02', year: '2026', tag: 'DEVOPS', role: 'DevOps Engineer', featured: true, imgLabel: 'pipeline diagram', metric: 'git push → live prod',
+        title: 'DevOps Lab — CI/CD Pipeline for AWS', summary: 'Terraform + Docker + GitHub Actions pipeline: git push to live production, fully automated.',
+        overview: 'Built an automated deployment pipeline that provisions AWS EC2 with Terraform, containerizes the app with Docker, and ships it through GitHub Actions — every push to main becomes a live production update with no manual server access.',
+        bullets: ['Provisioned AWS EC2 infrastructure with Terraform, including security groups and automated user_data bootstrapping', 'Built a GitHub Actions pipeline that builds, pushes to Docker Hub, and deploys to EC2 on every push to main', 'Diagnosed and fixed a cross-architecture (ARM64 vs AMD64) build failure and a malformed SSH credential in the pipeline'],
+        stack: ['Terraform', 'Docker', 'GitHub Actions', 'AWS EC2', 'Nginx', 'Docker Hub'],
+        repoUrl: 'https://github.com/Tommyzizii/devops-lab' },
+      { id: 'au-connect', num: '03', year: '2026', tag: 'SOFTWARE', role: 'Full-stack Engineer', featured: true, imgLabel: 'app screenshot', metric: 'real-time chat + Google auth',
+        title: 'AU Connect', summary: 'A social platform exclusively for Assumption University students, professors, and alumni.',
+        overview: 'AU Connect is a social networking platform built exclusively for Assumption University students, professors, and alumni — professional profiles, a news/jobs feed, connections, and real-time chat in one place.',
+        bullets: ['Built real-time chat, friend/connection requests, and a home feed for AU news and job posts', 'Google OAuth sign-in via NextAuth.js, with profiles, posts, and media backed by MongoDB Atlas', 'Collaborated in a 3-person team using Next.js API routes and Prisma ORM end to end'],
+        stack: ['Next.js', 'React', 'Tailwind CSS', 'Prisma ORM', 'MongoDB Atlas', 'NextAuth.js'],
+        repoUrl: 'https://github.com/Tommyzizii/au-connect' },
+      { id: 'burn-n-learn', num: '04', year: '2025', tag: 'SOFTWARE', role: 'iOS Developer', imgLabel: 'app screenshot', metric: 'HealthKit-integrated fitness app',
+        title: "Burn N' Learn — iOS Fitness App", summary: 'A HealthKit-integrated iOS app for tracking calories, nutrition, and fitness habits.',
+        overview: "Burn N' Learn is a health and fitness iOS app that tracks calorie intake and nutrition, pairing HealthKit data with motivational content to make consistency easier.",
+        bullets: ['Built the full UIKit navigation flow: tab bar, table/collection views, and modal flows', 'Integrated HealthKit for real health data and DGCharts for nutrition visualization', 'Firebase authentication and Alamofire-based networking, with local notifications for habit nudges'],
+        stack: ['Swift', 'UIKit', 'Firebase', 'HealthKit', 'Alamofire', 'DGCharts'],
+        repoUrl: 'https://github.com/Tommyzizii/iOS-Swift-UiKit-Project' },
+      { id: 'penny-track', num: '05', year: '2025', tag: 'SOFTWARE', role: 'Android Developer', imgLabel: 'app screenshot', metric: 'MVVM · Room · budget tracking',
+        title: 'Penny Track — Android Expense Tracker', summary: 'A Material Design Android app for categorizing expenses and tracking budgets.',
+        overview: 'Penny Track is a personal expense tracker for Android that helps categorize spending, monitor habits, and stay within budget through a clean, Material Design interface.',
+        bullets: ['MVVM architecture with ViewModel and LiveData over a Room database for offline persistence', 'Built expense categorization, budget tracking, and spending-insight charts with Material Design', 'RecyclerView-driven transaction lists with reminder notifications to stay on budget'],
+        stack: ['Kotlin', 'Android Jetpack', 'Room', 'LiveData', 'Material Design'],
+        repoUrl: 'https://github.com/Tommyzizii/Android_Term_Project' },
+      { id: 'medqueue', num: '06', year: '2025', tag: 'SOFTWARE', role: 'Frontend Engineer', imgLabel: 'app screenshot', metric: 'queue management UI',
+        title: 'MedQueue — Receptionist Frontend', summary: 'Receptionist-facing frontend for a clinic queue management system.',
+        overview: 'A web-based queue management system frontend built for the receptionist side of a clinic workflow, developed as a software testing course project.',
+        bullets: ['Built the receptionist-facing frontend for a clinic queue management system', 'Component-driven Next.js + TypeScript UI as part of a software testing coursework project', 'Focused on clear queue-state visibility for front-desk workflows'],
+        stack: ['Next.js', 'TypeScript', 'React', 'CSS'],
+        repoUrl: 'https://github.com/Tommyzizii/medqueue-receptionist-frontend' },
     ];
 
     this.toolGroups = [
