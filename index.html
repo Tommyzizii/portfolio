@@ -392,10 +392,10 @@ class Component extends DCLogic {
     ];
 
     this.toolGroups = [
-      { cat: 'CLOUD & INFRA', items: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Terraform', 'Pulumi', 'Karpenter'] },
-      { cat: 'CI / CD', items: ['GitHub Actions', 'ArgoCD', 'Argo Rollouts', 'Jenkins', 'Bazel'] },
-      { cat: 'OBSERVABILITY', items: ['Prometheus', 'Grafana', 'Loki', 'Tempo', 'OpenTelemetry', 'Datadog'] },
-      { cat: 'LANGUAGES & DATA', items: ['Go', 'Python', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'Kafka'] },
+      { cat: 'CLOUD & INFRA', items: ['AWS', 'Azure', 'Kubernetes', 'Docker', 'Terraform'] },
+      { cat: 'CI / CD', items: ['GitHub Actions', 'Jenkins'] },
+      { cat: 'OBSERVABILITY', items: ['Prometheus', 'Grafana', 'Datadog'] },
+      { cat: 'LANGUAGES & DATA', items: ['Python', 'Java', 'Swift', 'Kotlin', 'JavaScript', 'TypeScript', 'PostgreSQL', 'MySQL', 'Node.js', 'Next.js', 'Redis', 'Kafka'] },
     ];
 
     this.jobs = [
@@ -576,11 +576,12 @@ class Component extends DCLogic {
     const rotatingRole = React.createElement('span', { key: roleIdx + lang, style: { display: 'inline-block', animation: 'wordIn 0.55s ease both' } }, role);
 
     const marqueeItems = [
-      ['Kubernetes', 'kubernetes'], ['Docker', 'docker'], ['Terraform', 'terraform'], ['Pulumi', 'pulumi'],
-      ['Go', 'go'], ['Python', 'python'], ['TypeScript', 'typescript'], ['Node.js', 'nodedotjs'],
-      ['PostgreSQL', 'postgresql'], ['Redis', 'redis'], ['Kafka', 'apachekafka'],
-      ['Prometheus', 'prometheus'], ['Grafana', 'grafana'], ['OpenTelemetry', 'opentelemetry'],
-      ['GitHub Actions', 'githubactions'], ['Argo', 'argo'], ['Jenkins', 'jenkins'],
+      ['Kubernetes', 'kubernetes'], ['Docker', 'docker'], ['Terraform', 'terraform'],
+      ['GitHub Actions', 'githubactions'], ['Jenkins', 'jenkins'],
+      ['Prometheus', 'prometheus'], ['Grafana', 'grafana'], ['Datadog', 'datadog'],
+      ['Python', 'python'], ['Swift', 'swift'], ['Kotlin', 'kotlin'], ['JavaScript', 'javascript'], ['TypeScript', 'typescript'],
+      ['PostgreSQL', 'postgresql'], ['MySQL', 'mysql'], ['Node.js', 'nodedotjs'], ['Next.js', 'nextdotjs'],
+      ['Redis', 'redis'], ['Kafka', 'apachekafka'],
     ].map(([name, slug]) => ({ name, src: 'https://cdn.simpleicons.org/' + slug }));
 
     return {
