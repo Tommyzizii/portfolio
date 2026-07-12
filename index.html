@@ -76,8 +76,8 @@
         </div>
       </div>
       <div style="display: flex; gap: 0; border-top: 1px solid rgba(34,29,21,0.15); animation: fadeUp 0.6s 0.45s ease both;">
-        <div style="flex: 1; padding: 22px 0; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">05+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statYears }}</div></div>
-        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">40+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
+        <div style="flex: 1; padding: 22px 0; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">2+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statYears }}</div></div>
+        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">6</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
         <div style="flex: 1; padding: 22px 24px;"><div style="font-family: var(--df); font-size: 34px;">03</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statLangs }}</div></div>
       </div>
     </header>
@@ -111,11 +111,11 @@
         <h2 style="font-family: var(--df); font-weight: 400; font-size: clamp(38px, 4.5vw, 56px); margin: 0;">{{ t.featured }}</h2>
         <div style="flex: 1; height: 1px; background: rgba(34,29,21,0.15); align-self: center;"></div>
       </div>
-      <div style="display: grid; grid-template-columns: 1.25fr 1fr; grid-template-rows: auto auto; gap: 22px;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
         <sc-for list="{{ featured }}" as="p" hint-placeholder-count="3">
           <div data-reveal onClick="{{ p.open }}" style="{{ p.cardStyle }}" style-hover="transform: translateY(-8px); box-shadow: 0 24px 50px rgba(34,29,21,0.14); border-color: var(--accent);">
-            <div style="flex: 1; min-height: 170px; border-bottom: 1px solid rgba(34,29,21,0.12); background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(34,29,21,0.045) 10px, rgba(34,29,21,0.045) 11px); display: flex; align-items: center; justify-content: center; position: relative;">
-              <span style="font-family: var(--mono); font-size: 11px; color: #a89b85;">{{ p.imgLabel }}</span>
+            <div style="height: 220px; border-bottom: 1px solid rgba(34,29,21,0.12); background: #fff; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+              <img src="{{ p.img }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: contain; display: block;">
               <span style="position: absolute; top: 16px; right: 16px; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: #f6f1e7; display: flex; align-items: center; justify-content: center; font-size: 16px;">↗</span>
             </div>
             <div style="padding: 24px 26px 28px;">
@@ -184,7 +184,7 @@
     <!-- ABOUT -->
     <section id="about" data-screen-label="About" style="max-width: 1360px; margin: 0 auto; padding: 110px 48px;">
       <div style="display: grid; grid-template-columns: 320px 1fr; gap: 72px; align-items: start;">
-        <svg data-reveal viewBox="0 0 320 380" style="width: 100%; height: auto; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(34,29,21,0.05) 10px, rgba(34,29,21,0.05) 11px);"><text x="160" y="195" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#7a6f5d">portrait photo</text></svg>
+        <img data-reveal src="./assets/images/portrait.jpg" alt="Thant Zin Min" style="width: 100%; aspect-ratio: 320 / 380; object-fit: cover; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; display: block;">
         <div>
           <div data-reveal style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 28px;">
             <span style="font-family: var(--mono); font-size: 13px; color: var(--accent);">(04)</span>
@@ -272,7 +272,9 @@
     <h1 style="font-family: var(--df); font-weight: 400; font-size: clamp(40px, 6vw, 72px); line-height: 1.06; margin: 0 0 32px;">{{ detail.title }}</h1>
     <p style="font-size: 19px; line-height: 1.65; color: #52493a; max-width: 720px; margin: 0 0 56px;">{{ detail.overview }}</p>
 
-    <svg viewBox="0 0 920 420" style="width: 100%; height: auto; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(34,29,21,0.05) 12px, rgba(34,29,21,0.05) 13px); margin-bottom: 56px;"><text x="460" y="215" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="#7a6f5d">architecture diagram / screenshot</text></svg>
+    <div style="width: 100%; max-height: 480px; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; background: #fff; margin-bottom: 56px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+      <img src="{{ detail.img }}" alt="{{ detail.title }}" style="width: 100%; max-height: 480px; object-fit: contain; display: block;">
+    </div>
 
     <div style="display: grid; grid-template-columns: 1fr 280px; gap: 64px; align-items: start;">
       <div>
@@ -324,7 +326,7 @@ class Component extends DCLogic {
         avail: 'Open to new roles',
         intro: 'Engineer focused on cloud platforms, CI/CD, and the software that glues them together. Known as Tommy.',
         ctaWork: 'VIEW WORK ↓',
-        statYears: 'Years experience', statServices: 'Services migrated', statLangs: 'Languages spoken',
+        statYears: 'Years experience', statServices: 'Projects shipped', statLangs: 'Languages spoken',
         featured: 'Featured projects', allProjects: 'All projects', all: 'All',
         tools: 'Tools I use', toolsSub: 'The stack I reach for, grouped by what it does.',
         about: 'About',
@@ -342,7 +344,7 @@ class Component extends DCLogic {
         avail: 'เปิดรับงานใหม่',
         intro: 'วิศวกรที่เชี่ยวชาญด้านแพลตฟอร์มคลาวด์ CI/CD และซอฟต์แวร์ที่เชื่อมทุกอย่างเข้าด้วยกัน เพื่อน ๆ เรียกว่า Tommy',
         ctaWork: 'ดูผลงาน ↓',
-        statYears: 'ปีประสบการณ์', statServices: 'บริการที่ย้ายระบบ', statLangs: 'ภาษาที่พูดได้',
+        statYears: 'ปีประสบการณ์', statServices: 'โปรเจกต์ที่ทำสำเร็จ', statLangs: 'ภาษาที่พูดได้',
         featured: 'โปรเจกต์เด่น', allProjects: 'โปรเจกต์ทั้งหมด', all: 'ทั้งหมด',
         tools: 'เครื่องมือที่ใช้', toolsSub: 'เทคโนโลยีที่ใช้เป็นประจำ จัดกลุ่มตามหน้าที่การใช้งาน',
         about: 'เกี่ยวกับฉัน',
@@ -360,7 +362,7 @@ class Component extends DCLogic {
         avail: 'အလုပ်အသစ် လက်ခံနေသည်',
         intro: 'Cloud ပလက်ဖောင်း၊ CI/CD နှင့် ၎င်းတို့ကို ချိတ်ဆက်ပေးသော ဆော့ဖ်ဝဲများကို အဓိကထား လုပ်ဆောင်သော အင်ဂျင်နီယာ။ Tommy လို့လည်း ခေါ်ကြပါတယ်။',
         ctaWork: 'လက်ရာများ ကြည့်ရန် ↓',
-        statYears: 'နှစ် အတွေ့အကြုံ', statServices: 'ရွှေ့ပြောင်းခဲ့သော ဝန်ဆောင်မှု', statLangs: 'ပြောနိုင်သော ဘာသာစကား',
+        statYears: 'နှစ် အတွေ့အကြုံ', statServices: 'ပြီးမြောက်ခဲ့သော ပရောဂျက်များ', statLangs: 'ပြောနိုင်သော ဘာသာစကား',
         featured: 'ထင်ရှားသော ပရောဂျက်များ', allProjects: 'ပရောဂျက်အားလုံး', all: 'အားလုံး',
         tools: 'အသုံးပြုသော ကိရိယာများ', toolsSub: 'နေ့စဉ်အသုံးပြုသော နည်းပညာများကို လုပ်ဆောင်ချက်အလိုက် အုပ်စုဖွဲ့ထားသည်။',
         about: 'ကျွန်တော့်အကြောင်း',
@@ -375,42 +377,42 @@ class Component extends DCLogic {
     };
 
     this.data = [
-      { id: 'media-streaming', num: '01', year: '2026', tag: 'CLOUD', role: 'Cloud Architect', featured: true, big: true, imgLabel: 'architecture diagram', metric: 'multi-AZ, auto-scaling design',
+      { id: 'media-streaming', num: '01', year: '2026', tag: 'CLOUD', role: 'Cloud Architect', featured: true, metric: 'multi-AZ, auto-scaling design',
         title: 'Cloud-Native Media Streaming Platform', summary: 'AWS backend architecture for a YouTube-like streaming platform, built for high availability and viral traffic.',
         overview: 'Designed a cloud-native backend architecture for a YouTube-like video streaming platform on AWS — built to handle large concurrent audiences, viral traffic spikes, and automatic scaling across multiple Availability Zones.',
         bullets: ['Designed a multi-AZ AWS architecture (VPC, ALB, Auto Scaling, EC2) to absorb traffic spikes without downtime', 'Separated public/private subnets with a NAT Gateway and bastion host for secure backend access', 'S3 for video storage and RDS PostgreSQL for metadata, with CloudWatch alarms watching infrastructure health'],
         stack: ['AWS VPC', 'EC2 & Auto Scaling', 'Application Load Balancer', 'Amazon S3', 'RDS (PostgreSQL)', 'CloudWatch'],
-        repoUrl: 'https://github.com/Tommyzizii/aws-native-media-streaming-platform' },
-      { id: 'devops-lab', num: '02', year: '2026', tag: 'DEVOPS', role: 'DevOps Engineer', featured: true, imgLabel: 'pipeline diagram', metric: 'git push → live prod',
+        repoUrl: 'https://github.com/Tommyzizii/aws-native-media-streaming-platform', img: './assets/images/media-streaming.png' },
+      { id: 'devops-lab', num: '02', year: '2026', tag: 'DEVOPS', role: 'DevOps Engineer', featured: true, metric: 'git push → live prod',
         title: 'DevOps Lab — CI/CD Pipeline for AWS', summary: 'Terraform + Docker + GitHub Actions pipeline: git push to live production, fully automated.',
         overview: 'Built an automated deployment pipeline that provisions AWS EC2 with Terraform, containerizes the app with Docker, and ships it through GitHub Actions — every push to main becomes a live production update with no manual server access.',
         bullets: ['Provisioned AWS EC2 infrastructure with Terraform, including security groups and automated user_data bootstrapping', 'Built a GitHub Actions pipeline that builds, pushes to Docker Hub, and deploys to EC2 on every push to main', 'Diagnosed and fixed a cross-architecture (ARM64 vs AMD64) build failure and a malformed SSH credential in the pipeline'],
         stack: ['Terraform', 'Docker', 'GitHub Actions', 'AWS EC2', 'Nginx', 'Docker Hub'],
-        repoUrl: 'https://github.com/Tommyzizii/devops-lab' },
-      { id: 'au-connect', num: '03', year: '2026', tag: 'SOFTWARE', role: 'Full-stack Engineer', featured: true, imgLabel: 'app screenshot', metric: 'real-time chat + Google auth',
+        repoUrl: 'https://github.com/Tommyzizii/devops-lab', img: './assets/images/devops-lab.png' },
+      { id: 'au-connect', num: '03', year: '2026', tag: 'SOFTWARE', role: 'Full-stack Engineer', featured: true, metric: 'real-time chat + Google auth',
         title: 'AU Connect', summary: 'A social platform exclusively for Assumption University students, professors, and alumni.',
         overview: 'AU Connect is a social networking platform built exclusively for Assumption University students, professors, and alumni — professional profiles, a news/jobs feed, connections, and real-time chat in one place.',
         bullets: ['Built real-time chat, friend/connection requests, and a home feed for AU news and job posts', 'Google OAuth sign-in via NextAuth.js, with profiles, posts, and media backed by MongoDB Atlas', 'Collaborated in a 3-person team using Next.js API routes and Prisma ORM end to end'],
         stack: ['Next.js', 'React', 'Tailwind CSS', 'Prisma ORM', 'MongoDB Atlas', 'NextAuth.js'],
-        repoUrl: 'https://github.com/Tommyzizii/au-connect' },
-      { id: 'burn-n-learn', num: '04', year: '2025', tag: 'SOFTWARE', role: 'iOS Developer', imgLabel: 'app screenshot', metric: 'HealthKit-integrated fitness app',
+        repoUrl: 'https://github.com/Tommyzizii/au-connect', img: './assets/images/au-connect.png' },
+      { id: 'burn-n-learn', num: '04', year: '2025', tag: 'SOFTWARE', role: 'iOS Developer', metric: 'HealthKit-integrated fitness app',
         title: "Burn N' Learn — iOS Fitness App", summary: 'A HealthKit-integrated iOS app for tracking calories, nutrition, and fitness habits.',
         overview: "Burn N' Learn is a health and fitness iOS app that tracks calorie intake and nutrition, pairing HealthKit data with motivational content to make consistency easier.",
         bullets: ['Built the full UIKit navigation flow: tab bar, table/collection views, and modal flows', 'Integrated HealthKit for real health data and DGCharts for nutrition visualization', 'Firebase authentication and Alamofire-based networking, with local notifications for habit nudges'],
         stack: ['Swift', 'UIKit', 'Firebase', 'HealthKit', 'Alamofire', 'DGCharts'],
-        repoUrl: 'https://github.com/Tommyzizii/iOS-Swift-UiKit-Project' },
-      { id: 'penny-track', num: '05', year: '2025', tag: 'SOFTWARE', role: 'Android Developer', imgLabel: 'app screenshot', metric: 'MVVM · Room · budget tracking',
+        repoUrl: 'https://github.com/Tommyzizii/iOS-Swift-UiKit-Project', img: './assets/images/burn-n-learn.png' },
+      { id: 'penny-track', num: '05', year: '2025', tag: 'SOFTWARE', role: 'Android Developer', metric: 'MVVM · Room · budget tracking',
         title: 'Penny Track — Android Expense Tracker', summary: 'A Material Design Android app for categorizing expenses and tracking budgets.',
         overview: 'Penny Track is a personal expense tracker for Android that helps categorize spending, monitor habits, and stay within budget through a clean, Material Design interface.',
         bullets: ['MVVM architecture with ViewModel and LiveData over a Room database for offline persistence', 'Built expense categorization, budget tracking, and spending-insight charts with Material Design', 'RecyclerView-driven transaction lists with reminder notifications to stay on budget'],
         stack: ['Kotlin', 'Android Jetpack', 'Room', 'LiveData', 'Material Design'],
-        repoUrl: 'https://github.com/Tommyzizii/Android_Term_Project' },
-      { id: 'medqueue', num: '06', year: '2025', tag: 'SOFTWARE', role: 'Frontend Engineer', imgLabel: 'app screenshot', metric: 'queue management UI',
+        repoUrl: 'https://github.com/Tommyzizii/Android_Term_Project', img: './assets/images/penny-track.png' },
+      { id: 'medqueue', num: '06', year: '2025', tag: 'SOFTWARE', role: 'Frontend Engineer', metric: 'queue management UI',
         title: 'MedQueue — Receptionist Frontend', summary: 'Receptionist-facing frontend for a clinic queue management system.',
         overview: 'A web-based queue management system frontend built for the receptionist side of a clinic workflow, developed as a software testing course project.',
         bullets: ['Built the receptionist-facing frontend for a clinic queue management system', 'Component-driven Next.js + TypeScript UI as part of a software testing coursework project', 'Focused on clear queue-state visibility for front-desk workflows'],
         stack: ['Next.js', 'TypeScript', 'React', 'CSS'],
-        repoUrl: 'https://github.com/Tommyzizii/medqueue-receptionist-frontend' },
+        repoUrl: 'https://github.com/Tommyzizii/medqueue-receptionist-frontend', img: './assets/images/medqueue.png' },
     ];
 
     this.toolGroups = [
@@ -589,7 +591,6 @@ class Component extends DCLogic {
         border: '1px solid rgba(34,29,21,0.15)', background: '#fbf8f1', cursor: 'pointer',
         borderRadius: '24px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s',
-        gridRow: p.big ? 'span 2' : 'auto',
       },
     }));
     const projects = this.data
