@@ -62,7 +62,7 @@
     <header style="padding: 168px 48px 0; max-width: 1360px; margin: 0 auto;">
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 34px; animation: fadeUp 0.6s ease both;">
         <span style="display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(34,29,21,0.2); background: rgba(251,248,241,0.7); border-radius: 999px; padding: 8px 16px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #3d7a45; animation: pulse 1.8s ease-in-out infinite;"></span>{{ t.avail }}</span>
-        <span style="font-family: var(--mono); font-size: 12px; color: #a89b85;">YGN — UTC+6:30</span>
+        <span style="font-family: var(--mono); font-size: 12px; color: #a89b85;">BKK — UTC+7</span>
       </div>
       <h1 style="font-family: var(--sans); font-weight: 500; font-size: clamp(58px, 10vw, 148px); line-height: 0.98; letter-spacing: -0.03em; margin: 0; text-transform: uppercase; animation: fadeUp 0.6s 0.1s ease both;">Thant Zin Min</h1>
       <div style="display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin: 8px 0 0; animation: fadeUp 0.6s 0.2s ease both;">
@@ -204,7 +204,7 @@
           <span style="font-family: var(--mono); font-size: 13px; color: var(--accent);">(05)</span>
           <h2 style="font-family: var(--df); font-weight: 400; font-size: clamp(38px, 4.5vw, 56px); margin: 0;">{{ t.resume }}</h2>
         </div>
-        <span style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; border: 1px solid rgba(34,29,21,0.3); border-radius: 999px; padding: 12px 24px; cursor: pointer; transition: all 0.25s;" style-hover="background: var(--ink); color: #f6f1e7; transform: translateY(-3px);">{{ t.download }}</span>
+        <a href="./assets/Thant_Zin_Min_CV.pdf" download style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--ink); text-decoration: none; border: 1px solid rgba(34,29,21,0.3); border-radius: 999px; padding: 12px 24px; cursor: pointer; transition: all 0.25s;" style-hover="background: var(--ink); color: #f6f1e7; transform: translateY(-3px);">{{ t.download }}</a>
       </div>
       <div style="display: grid; gap: 16px;">
         <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="3">
@@ -245,9 +245,9 @@
         <div data-reveal style="font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 20px; text-transform: uppercase;">{{ t.contactKicker }}</div>
         <div data-reveal style="font-family: var(--df); font-weight: 400; font-size: clamp(52px, 9vw, 130px); line-height: 1.02; margin-bottom: 48px;">{{ t.letsTalk }} <span style="font-style: italic; color: var(--accent);">↗</span></div>
         <div data-reveal style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
-          <a href="mailto:hello@thantzinmin.dev" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; background: var(--accent); color: #221d15; text-decoration: none; border-radius: 999px; padding: 16px 30px; transition: transform 0.25s, background 0.25s;" style-hover="transform: translateY(-3px); background: #f6f1e7;">hello@thantzinmin.dev</a>
+          <a href="mailto:thantzinmin.us@gmail.com" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.05em; background: var(--accent); color: #221d15; text-decoration: none; border-radius: 999px; padding: 16px 30px; transition: transform 0.25s, background 0.25s;" style-hover="transform: translateY(-3px); background: #f6f1e7;">thantzinmin.us@gmail.com</a>
           <a href="https://github.com/Tommyzizii" target="_blank" rel="noopener" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">GITHUB ↗</a>
-          <a href="#" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">LINKEDIN ↗</a>
+          <a href="https://www.linkedin.com/in/thant-zinmin-6837bb288" target="_blank" rel="noopener" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; color: rgba(246,241,231,0.75); text-decoration: none; border: 1px solid rgba(246,241,231,0.25); border-radius: 999px; padding: 16px 26px; transition: all 0.25s;" style-hover="border-color: var(--accent); color: var(--accent); transform: translateY(-3px);">LINKEDIN ↗</a>
         </div>
         <div style="display: flex; justify-content: space-between; margin-top: 90px; padding-top: 24px; border-top: 1px solid rgba(246,241,231,0.15); font-family: var(--mono); font-size: 12px; color: rgba(246,241,231,0.45);">
           <span>© 2026 Thant Zin Min</span>
@@ -333,7 +333,7 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'Resume', download: 'DOWNLOAD PDF ↓',
         certifications: 'Certifications', certsSub: 'Cloud training completed through AWS Academy.', issued: 'Issued',
-        contactKicker: 'Get in touch', letsTalk: "Let's talk", location: 'Yangon / Remote',
+        contactKicker: 'Get in touch', letsTalk: "Let's talk", location: 'Bangkok / Remote',
         backAll: '← ALL WORK', highlights: 'Highlights', stackLabel: 'Stack', next: 'Next project', viewRepo: 'View on GitHub ↗',
       },
       th: {
@@ -351,7 +351,7 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ประวัติย่อ', download: 'ดาวน์โหลด PDF ↓',
         certifications: 'ใบรับรอง', certsSub: 'การฝึกอบรมด้านคลาวด์ที่สำเร็จผ่าน AWS Academy', issued: 'ออกให้เมื่อ',
-        contactKicker: 'ติดต่อ', letsTalk: 'คุยกันเลย', location: 'ย่างกุ้ง / ทำงานทางไกล',
+        contactKicker: 'ติดต่อ', letsTalk: 'คุยกันเลย', location: 'กรุงเทพฯ / ทำงานทางไกล',
         backAll: '← ผลงานทั้งหมด', highlights: 'ไฮไลต์', stackLabel: 'เทคโนโลยี', next: 'โปรเจกต์ถัดไป', viewRepo: 'ดูบน GitHub ↗',
       },
       my: {
@@ -369,7 +369,7 @@ class Component extends DCLogic {
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ကိုယ်ရေးအကျဉ်း', download: 'PDF ဒေါင်းလုဒ် ↓',
         certifications: 'အသိအမှတ်ပြု လက်မှတ်များ', certsSub: 'AWS Academy မှတစ်ဆင့် ပြီးမြောက်ခဲ့သော Cloud သင်တန်းများ', issued: 'ထုတ်ပေးသည့်ရက်',
-        contactKicker: 'ဆက်သွယ်ရန်', letsTalk: 'စကားပြောကြရအောင်', location: 'ရန်ကုန် / Remote',
+        contactKicker: 'ဆက်သွယ်ရန်', letsTalk: 'စကားပြောကြရအောင်', location: 'Bangkok / Remote',
         backAll: '← လက်ရာအားလုံး', highlights: 'အဓိကအချက်များ', stackLabel: 'နည်းပညာများ', next: 'နောက်ပရောဂျက်', viewRepo: 'GitHub တွင်ကြည့်ရန် ↗',
       },
     };
@@ -421,9 +421,9 @@ class Component extends DCLogic {
     ];
 
     this.jobs = [
-      { period: '2024 — Present', role: 'Senior DevOps Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Own the cloud platform and deployment tooling for a product org of ~60 engineers. Led the multi-region Kubernetes migration and CI/CD overhaul.' },
-      { period: '2022 — 2024', role: 'Cloud Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Infrastructure-as-code, observability, and cost optimization across AWS. Built the Terraform module library adopted org-wide.' },
-      { period: '2020 — 2022', role: 'Software Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Backend services in Go and Node.js; gradually took over deployment and infrastructure work, which became the focus of my career.' },
+      { period: 'Mar 2026 — Present', role: 'Software Engineer Intern', company: 'Trusted Brothers Company Limited · Bangkok', blurb: 'Developed full-stack web applications using JavaScript (frontend and backend) to support internal business operations. Collaborated with the team to build and enhance features supporting business workflows, improving usability and system efficiency.' },
+      { period: 'Jun 2025 — Present', role: 'Software Engineer', company: "D*Code Research Laboratory · Assumption University", blurb: 'Collaborated with a university and industry partner to develop real-world applications. Leading development of AU Connect, a senior project delivering a scalable, user-centered platform.' },
+      { period: 'Jun 2023 — Present', role: 'B.Sc. Computer Science', company: 'Assumption University · Samut Prakan, Bangkok', blurb: 'Pursuing a Bachelor of Science in Computer Science, GPA 3.52. Coursework spans web, mobile, cloud, data science, game development, and software architecture.' },
     ];
 
     this.certs = [
