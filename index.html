@@ -220,6 +220,25 @@
       </div>
     </section>
 
+    <!-- CERTIFICATIONS -->
+    <section id="certs" data-screen-label="Certifications" style="max-width: 1360px; margin: 0 auto; padding: 0 48px 110px;">
+      <div data-reveal style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 12px;">
+        <span style="font-family: var(--mono); font-size: 13px; color: var(--accent);">(06)</span>
+        <h2 style="font-family: var(--df); font-weight: 400; font-size: clamp(38px, 4.5vw, 56px); margin: 0;">{{ t.certifications }}</h2>
+      </div>
+      <p data-reveal style="font-size: 15px; color: #7a6f5d; margin: 0 0 40px; padding-left: 40px;">{{ t.certsSub }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <sc-for list="{{ certs }}" as="c" hint-placeholder-count="3">
+          <div data-reveal style="padding: 28px 26px; border: 1px solid rgba(34,29,21,0.15); border-radius: 20px; background: rgba(251,248,241,0.7); transition: all 0.25s;" style-hover="border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(34,29,21,0.09);">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(162,103,58,0.14); font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: var(--accent); margin-bottom: 18px;">AWS</div>
+            <div style="font-family: var(--df); font-size: 21px; line-height: 1.3; margin-bottom: 8px;">{{ c.name }}</div>
+            <div style="font-size: 13.5px; line-height: 1.5; color: #7a6f5d; margin-bottom: 16px;">{{ c.issuer }}</div>
+            <div style="font-family: var(--mono); font-size: 11.5px; color: #a89b85; text-transform: uppercase; letter-spacing: 0.06em;">{{ t.issued }} {{ c.date }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" data-screen-label="Contact" style="background: var(--ink); color: #f6f1e7; border-radius: 32px 32px 0 0; overflow: hidden;">
       <div style="max-width: 1360px; margin: 0 auto; padding: 110px 48px 40px;">
@@ -313,6 +332,7 @@ class Component extends DCLogic {
         about2: 'I care about systems that are boring in the best way — predictable deploys, clear dashboards, infrastructure defined in code and reviewed like code.',
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'Resume', download: 'DOWNLOAD PDF ↓',
+        certifications: 'Certifications', certsSub: 'Cloud training completed through AWS Academy.', issued: 'Issued',
         contactKicker: 'Get in touch', letsTalk: "Let's talk", location: 'Yangon / Remote',
         backAll: '← ALL WORK', highlights: 'Highlights', stackLabel: 'Stack', next: 'Next project', viewRepo: 'View on GitHub ↗',
       },
@@ -330,6 +350,7 @@ class Component extends DCLogic {
         about2: 'ผมให้ความสำคัญกับระบบที่ "น่าเบื่อ" ในแบบที่ดีที่สุด — ดีพลอยได้อย่างคาดเดาได้ แดชบอร์ดชัดเจน และโครงสร้างพื้นฐานที่เขียนเป็นโค้ดและรีวิวเหมือนโค้ด',
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ประวัติย่อ', download: 'ดาวน์โหลด PDF ↓',
+        certifications: 'ใบรับรอง', certsSub: 'การฝึกอบรมด้านคลาวด์ที่สำเร็จผ่าน AWS Academy', issued: 'ออกให้เมื่อ',
         contactKicker: 'ติดต่อ', letsTalk: 'คุยกันเลย', location: 'ย่างกุ้ง / ทำงานทางไกล',
         backAll: '← ผลงานทั้งหมด', highlights: 'ไฮไลต์', stackLabel: 'เทคโนโลยี', next: 'โปรเจกต์ถัดไป', viewRepo: 'ดูบน GitHub ↗',
       },
@@ -347,6 +368,7 @@ class Component extends DCLogic {
         about2: 'ခန့်မှန်းနိုင်သော deploy များ၊ ရှင်းလင်းသော dashboard များနှင့် ကုဒ်အဖြစ် ရေးသားပြီး ကုဒ်လိုပဲ review လုပ်သော အခြေခံအဆောက်အအုံ — ကောင်းမွန်စွာ ငြိမ်သက်နေသော စနစ်များကို တန်ဖိုးထားပါတယ်။',
         speaks: '🌐 English · ไทย · မြန်မာ',
         resume: 'ကိုယ်ရေးအကျဉ်း', download: 'PDF ဒေါင်းလုဒ် ↓',
+        certifications: 'အသိအမှတ်ပြု လက်မှတ်များ', certsSub: 'AWS Academy မှတစ်ဆင့် ပြီးမြောက်ခဲ့သော Cloud သင်တန်းများ', issued: 'ထုတ်ပေးသည့်ရက်',
         contactKicker: 'ဆက်သွယ်ရန်', letsTalk: 'စကားပြောကြရအောင်', location: 'ရန်ကုန် / Remote',
         backAll: '← လက်ရာအားလုံး', highlights: 'အဓိကအချက်များ', stackLabel: 'နည်းပညာများ', next: 'နောက်ပရောဂျက်', viewRepo: 'GitHub တွင်ကြည့်ရန် ↗',
       },
@@ -402,6 +424,12 @@ class Component extends DCLogic {
       { period: '2024 — Present', role: 'Senior DevOps Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Own the cloud platform and deployment tooling for a product org of ~60 engineers. Led the multi-region Kubernetes migration and CI/CD overhaul.' },
       { period: '2022 — 2024', role: 'Cloud Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Infrastructure-as-code, observability, and cost optimization across AWS. Built the Terraform module library adopted org-wide.' },
       { period: '2020 — 2022', role: 'Software Engineer', company: 'COMPANY PLACEHOLDER', blurb: 'Backend services in Go and Node.js; gradually took over deployment and infrastructure work, which became the focus of my career.' },
+    ];
+
+    this.certs = [
+      { name: 'AWS Academy Graduate — Cloud Foundations', issuer: 'Amazon Web Services Training and Certification', date: 'Feb 11, 2025' },
+      { name: 'AWS Academy Graduate — Cloud Developing', issuer: 'Amazon Web Services Training and Certification', date: 'Mar 7, 2025' },
+      { name: 'AWS Academy Graduate — Cloud Operations', issuer: 'Amazon Web Services Training and Certification', date: 'Feb 24, 2026' },
     ];
   }
 
@@ -589,7 +617,7 @@ class Component extends DCLogic {
       t, langs, isHome, isDetail: !isHome,
       rotatingRole, marqueeItems,
       featured, filters, projects, detail,
-      toolGroups: this.toolGroups, jobs: this.jobs,
+      toolGroups: this.toolGroups, jobs: this.jobs, certs: this.certs,
       nextTitle: next.title,
       openNext: () => { this.setState({ view: next.id }); window.scrollTo({ top: 0 }); },
       goHome: () => this.go('top'),
