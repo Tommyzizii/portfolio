@@ -23,21 +23,20 @@
   html { overflow-x: hidden; }
   body { overflow-x: hidden; }
 
-  /* ---- Featured projects: vertical snap-scroll feed ---- */
+  /* ---- Featured projects: horizontal snap-scroll feed ---- */
   .featured-scroll {
-    display: flex; flex-direction: column; gap: 20px;
-    height: clamp(420px, 68vh, 640px);
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
+    display: flex; flex-direction: row; gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    padding: 4px 4px 4px 0;
+    padding: 4px 4px 16px 4px;
     margin: 0 -4px;
   }
-  .featured-scroll::-webkit-scrollbar { width: 5px; }
+  .featured-scroll::-webkit-scrollbar { height: 5px; }
   .featured-scroll::-webkit-scrollbar-track { background: transparent; }
   .featured-scroll::-webkit-scrollbar-thumb { background: rgba(34,29,21,0.2); border-radius: 999px; }
-  .featured-card { scroll-snap-align: start; flex: none; }
-  .featured-img { height: clamp(200px, 34vh, 340px); }
+  .featured-card { scroll-snap-align: start; flex: 0 0 clamp(280px, 82vw, 400px); }
+  .featured-img { height: clamp(180px, 30vw, 240px); }
 
   /* ---- Responsive: tablet ---- */
   @media (max-width: 900px) {
@@ -375,7 +374,7 @@ class Component extends DCLogic {
         intro: 'Engineer focused on cloud platforms, CI/CD, and the software that glues them together. Known as Tommy.',
         ctaWork: 'VIEW WORK ↓',
         statYears: 'Years experience', statServices: 'Projects shipped', statLangs: 'Languages spoken',
-        featured: 'Featured projects', allProjects: 'All projects', all: 'All', scrollHint: 'Scroll ↓',
+        featured: 'Featured projects', allProjects: 'All projects', all: 'All', scrollHint: 'Scroll →',
         tools: 'Tools I use', toolsSub: 'The stack I reach for, grouped by what it does.',
         about: 'About',
         about1: "I'm Thant Zin Min — most people call me Tommy. I work across the stack that keeps software running: cloud architecture, deployment pipelines, observability, and the backend services in between.",
@@ -393,7 +392,7 @@ class Component extends DCLogic {
         intro: 'วิศวกรที่เชี่ยวชาญด้านแพลตฟอร์มคลาวด์ CI/CD และซอฟต์แวร์ที่เชื่อมทุกอย่างเข้าด้วยกัน เพื่อน ๆ เรียกว่า Tommy',
         ctaWork: 'ดูผลงาน ↓',
         statYears: 'ปีประสบการณ์', statServices: 'โปรเจกต์ที่ทำสำเร็จ', statLangs: 'ภาษาที่พูดได้',
-        featured: 'โปรเจกต์เด่น', allProjects: 'โปรเจกต์ทั้งหมด', all: 'ทั้งหมด', scrollHint: 'เลื่อนดู ↓',
+        featured: 'โปรเจกต์เด่น', allProjects: 'โปรเจกต์ทั้งหมด', all: 'ทั้งหมด', scrollHint: 'เลื่อนดู →',
         tools: 'เครื่องมือที่ใช้', toolsSub: 'เทคโนโลยีที่ใช้เป็นประจำ จัดกลุ่มตามหน้าที่การใช้งาน',
         about: 'เกี่ยวกับฉัน',
         about1: 'ผมชื่อ Thant Zin Min — ส่วนใหญ่เรียกกันว่า Tommy ทำงานครอบคลุมทุกส่วนที่ทำให้ระบบซอฟต์แวร์ทำงานได้ต่อเนื่อง ทั้งสถาปัตยกรรมคลาวด์ ไปป์ไลน์การดีพลอย การมอนิเตอร์ระบบ และบริการฝั่งแบ็กเอนด์',
@@ -411,7 +410,7 @@ class Component extends DCLogic {
         intro: 'Cloud ပလက်ဖောင်း၊ CI/CD နှင့် ၎င်းတို့ကို ချိတ်ဆက်ပေးသော ဆော့ဖ်ဝဲများကို အဓိကထား လုပ်ဆောင်သော အင်ဂျင်နီယာ။ Tommy လို့လည်း ခေါ်ကြပါတယ်။',
         ctaWork: 'လက်ရာများ ကြည့်ရန် ↓',
         statYears: 'နှစ် အတွေ့အကြုံ', statServices: 'ပြီးမြောက်ခဲ့သော ပရောဂျက်များ', statLangs: 'ပြောနိုင်သော ဘာသာစကား',
-        featured: 'ထင်ရှားသော ပရောဂျက်များ', allProjects: 'ပရောဂျက်အားလုံး', all: 'အားလုံး', scrollHint: 'ရွှေ့ကြည့်ရန် ↓',
+        featured: 'ထင်ရှားသော ပရောဂျက်များ', allProjects: 'ပရောဂျက်အားလုံး', all: 'အားလုံး', scrollHint: 'ရွှေ့ကြည့်ရန် →',
         tools: 'အသုံးပြုသော ကိရိယာများ', toolsSub: 'နေ့စဉ်အသုံးပြုသော နည်းပညာများကို လုပ်ဆောင်ချက်အလိုက် အုပ်စုဖွဲ့ထားသည်။',
         about: 'ကျွန်တော့်အကြောင်း',
         about1: 'ကျွန်တော် Thant Zin Min ပါ — Tommy လို့လည်း ခေါ်ကြပါတယ်။ Cloud ဗိသုကာ၊ deployment pipeline များ၊ observability နှင့် backend ဝန်ဆောင်မှုများ — ဆော့ဖ်ဝဲစနစ်များ ဆက်လက်လည်ပတ်စေရန် လိုအပ်သမျှကို လုပ်ဆောင်ပါတယ်။',
