@@ -123,7 +123,7 @@
       </div>
       <div class="stats-row" style="display: flex; gap: 0; border-top: 1px solid rgba(34,29,21,0.15); animation: fadeUp 0.6s 0.45s ease both;">
         <div style="flex: 1; padding: 22px 0; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">2+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statYears }}</div></div>
-        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">6</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
+        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">7</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
         <div style="flex: 1; padding: 22px 24px;"><div style="font-family: var(--df); font-size: 34px;">03</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statLangs }}</div></div>
       </div>
     </header>
@@ -460,6 +460,12 @@ class Component extends DCLogic {
         bullets: ['Built the receptionist-facing frontend for a clinic queue management system', 'Component-driven Next.js + TypeScript UI as part of a software testing coursework project', 'Focused on clear queue-state visibility for front-desk workflows'],
         stack: ['Next.js', 'TypeScript', 'React', 'CSS'],
         repoUrl: 'https://github.com/Tommyzizii/medqueue-receptionist-frontend', img: './assets/images/medqueue.png' },
+      { id: 'docker-swarm', num: '07', year: '2026', tag: 'DEVOPS', role: 'DevOps Engineer', metric: '1 manager + 2 workers, routing mesh',
+        title: 'AWS Docker Swarm Orchestration', summary: 'A 3-tier app (React/Nginx, Flask, PostgreSQL) migrated from Docker Compose to a 3-node Docker Swarm cluster on AWS EC2.',
+        overview: "Deployed a three-tier application locally with Docker Compose, then migrated it to a 3-node Docker Swarm cluster (1 manager, 2 workers) on AWS EC2 — complete with overlay networking, a self-referencing security group, and Swarm's routing mesh.",
+        bullets: ['Diagnosed and fixed an ARM64 vs x86_64 image mismatch by rebuilding with docker buildx --platform linux/amd64 for the EC2 workers', 'Converted bridge networking to an overlay network so frontend/backend/db discover each other by name across physical nodes', 'Configured a self-referencing security group (ports 2377/7946/4789) so Swarm nodes can gossip and manage the cluster without hardcoded IPs'],
+        stack: ['Docker Swarm', 'AWS EC2', 'React', 'Nginx', 'Flask', 'PostgreSQL'],
+        repoUrl: 'https://github.com/Tommyzizii/aws-docker-swarm-orchestration', img: './assets/images/docker-swarm.png' },
     ];
 
     this.toolGroups = [
