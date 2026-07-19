@@ -20,8 +20,42 @@
   @keyframes wordIn { from { opacity: 0; transform: translateY(0.4em) skewY(2deg); } to { opacity: 1; transform: none; } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: 0.4; } }
+  @keyframes letterIn { from { opacity: 0; transform: translateY(0.6em) rotateX(78deg); } to { opacity: 1; transform: none; } }
+  @keyframes navIn { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+  @keyframes blobFloat { from { transform: translate(0, 0) scale(1); } to { transform: translate(-70px, 55px) scale(1.18); } }
   html { overflow-x: hidden; }
   body { overflow-x: hidden; }
+
+  /* ---- Ambient background blobs ---- */
+  .blob { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.5; pointer-events: none; z-index: 0; }
+  .blob.b1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(162,103,58,0.38), transparent 70%); top: -120px; right: -100px; animation: blobFloat 22s ease-in-out infinite alternate; }
+  .blob.b2 { width: 480px; height: 480px; background: radial-gradient(circle, rgba(61,122,69,0.25), transparent 70%); bottom: -160px; left: -140px; animation: blobFloat 27s ease-in-out -9s infinite alternate-reverse; }
+
+  /* ---- Hero name 3D letter entrance ---- */
+  .hero-name { perspective: 700px; }
+  .hero-name .hw { display: inline-block; white-space: nowrap; margin-right: 0.22em; }
+  .hero-name .hw:last-child { margin-right: 0; }
+  .hero-name .hl { display: inline-block; transform-origin: 50% 100%; animation: letterIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* ---- 3D tilt cards ---- */
+  [data-tilt] { transition: transform 0.16s ease-out, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.7s ease !important; will-change: transform; }
+
+  /* ---- Featured card image zoom ---- */
+  .featured-img img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .featured-card:hover .featured-img img { transform: scale(1.06); }
+
+  /* ---- Marquee pause on hover ---- */
+  .marquee-wrap:hover .marquee-anim { animation-play-state: paused; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blob, .hero-name .hl, .marquee-anim { animation: none !important; }
+    .hero-name .hl { opacity: 1; }
+  }
+  @media (max-width: 640px) {
+    .blob { filter: blur(60px); opacity: 0.35; }
+    .blob.b1 { width: 320px; height: 320px; }
+    .blob.b2 { width: 300px; height: 300px; }
+  }
 
   /* ---- Featured projects: horizontal snap-scroll feed ---- */
   .featured-scroll {
@@ -73,6 +107,10 @@
   <!-- column grid backdrop -->
   <div style="position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(90deg, rgba(34,29,21,0.035) 0 1px, transparent 1px calc(100% / 6)); background-size: 100% 100%;"></div>
 
+  <!-- ambient gradient blobs -->
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
   <!-- cursor ring -->
   <div ref="{{ cursorRef }}" style="position: fixed; top: -17px; left: -17px; width: 34px; height: 34px; border: 1.5px solid var(--accent); border-radius: 50%; pointer-events: none; z-index: 100; transition: transform 0.12s ease-out, opacity 0.3s; opacity: 0;"></div>
 
@@ -80,7 +118,7 @@
   <div ref="{{ progressRef }}" style="position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--accent); z-index: 60;"></div>
 
   <!-- NAV -->
-  <nav style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; padding: 0 20px;">
+  <nav style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; display: flex; justify-content: center; padding: 0 20px; animation: navIn 0.7s 0.15s ease both;">
     <div class="nav-pill" style="display: flex; align-items: center; gap: 26px; background: rgba(251,248,241,0.8); backdrop-filter: blur(14px); border: 1px solid rgba(34,29,21,0.12); border-radius: 999px; padding: 10px 12px 10px 24px; box-shadow: 0 8px 30px rgba(34,29,21,0.08); max-width: 100%; flex-wrap: wrap; justify-content: center;">
       <div onClick="{{ goHome }}" style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; cursor: pointer; font-weight: 500; white-space: nowrap;">TZM<span style="color: var(--accent);">*</span></div>
       <div class="nav-links" style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
@@ -105,12 +143,13 @@
   <div data-screen-label="Home" style="position: relative; z-index: 1;">
 
     <!-- HERO -->
-    <header class="pad-x hero-header" style="padding: 168px 48px 0; max-width: 1360px; margin: 0 auto;">
+    <header class="pad-x hero-header" style="padding: 168px 48px 0; max-width: 1360px; margin: 0 auto; position: relative;">
+      <canvas ref="{{ heroCanvasRef }}" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;"></canvas>
       <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 34px; animation: fadeUp 0.6s ease both;">
         <span style="display: inline-flex; align-items: center; gap: 9px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(34,29,21,0.2); background: rgba(251,248,241,0.7); border-radius: 999px; padding: 8px 16px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #3d7a45; animation: pulse 1.8s ease-in-out infinite;"></span>{{ t.avail }}</span>
         <span style="font-family: var(--mono); font-size: 12px; color: #a89b85;">BKK — UTC+7</span>
       </div>
-      <h1 style="font-family: var(--sans); font-weight: 500; font-size: clamp(58px, 10vw, 148px); line-height: 0.98; letter-spacing: -0.03em; margin: 0; text-transform: uppercase; animation: fadeUp 0.6s 0.1s ease both;">Thant Zin Min</h1>
+      <h1 class="hero-name" style="font-family: var(--sans); font-weight: 500; font-size: clamp(58px, 10vw, 148px); line-height: 0.98; letter-spacing: -0.03em; margin: 0; text-transform: uppercase;"><span class="hw"><span class="hl" style="animation-delay: 0.10s">T</span><span class="hl" style="animation-delay: 0.15s">h</span><span class="hl" style="animation-delay: 0.20s">a</span><span class="hl" style="animation-delay: 0.25s">n</span><span class="hl" style="animation-delay: 0.30s">t</span></span><span class="hw"><span class="hl" style="animation-delay: 0.35s">Z</span><span class="hl" style="animation-delay: 0.40s">i</span><span class="hl" style="animation-delay: 0.45s">n</span></span><span class="hw"><span class="hl" style="animation-delay: 0.50s">M</span><span class="hl" style="animation-delay: 0.55s">i</span><span class="hl" style="animation-delay: 0.60s">n</span></span></h1>
       <div style="display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; margin: 8px 0 0; animation: fadeUp 0.6s 0.2s ease both;">
         <span style="font-family: var(--df); font-style: italic; font-weight: 300; font-size: clamp(38px, 6vw, 84px); line-height: 1.1; color: var(--accent);">{{ rotatingRole }}</span>
       </div>
@@ -122,15 +161,15 @@
         </div>
       </div>
       <div class="stats-row" style="display: flex; gap: 0; border-top: 1px solid rgba(34,29,21,0.15); animation: fadeUp 0.6s 0.45s ease both;">
-        <div style="flex: 1; padding: 22px 0; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">2+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statYears }}</div></div>
-        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div style="font-family: var(--df); font-size: 34px;">7</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
-        <div style="flex: 1; padding: 22px 24px;"><div style="font-family: var(--df); font-size: 34px;">03</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statLangs }}</div></div>
+        <div style="flex: 1; padding: 22px 0; border-right: 1px solid rgba(34,29,21,0.12);"><div ref="{{ statRef }}" data-target="2" data-suffix="+" style="font-family: var(--df); font-size: 34px;">2+</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statYears }}</div></div>
+        <div style="flex: 1; padding: 22px 24px; border-right: 1px solid rgba(34,29,21,0.12);"><div ref="{{ statRef }}" data-target="7" style="font-family: var(--df); font-size: 34px;">7</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statServices }}</div></div>
+        <div style="flex: 1; padding: 22px 24px;"><div ref="{{ statRef }}" data-target="3" data-pad="1" style="font-family: var(--df); font-size: 34px;">03</div><div style="font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: #a89b85; text-transform: uppercase; margin-top: 4px;">{{ t.statLangs }}</div></div>
       </div>
     </header>
 
     <!-- TOOLS LOGO MARQUEE -->
-    <div style="border-top: 1px solid rgba(34,29,21,0.12); border-bottom: 1px solid rgba(34,29,21,0.12); padding: 20px 0; overflow: hidden; margin-top: 64px;">
-      <div style="display: inline-flex; white-space: nowrap; animation: marquee 48s linear infinite;">
+    <div class="marquee-wrap" style="border-top: 1px solid rgba(34,29,21,0.12); border-bottom: 1px solid rgba(34,29,21,0.12); padding: 20px 0; overflow: hidden; margin-top: 64px;">
+      <div class="marquee-anim" style="display: inline-flex; white-space: nowrap; animation: marquee 48s linear infinite;">
         <div style="display: inline-flex; align-items: center; gap: 52px; padding-right: 52px;">
           <sc-for list="{{ marqueeItems }}" as="m" hint-placeholder-count="8">
             <span style="display: inline-flex; align-items: center; gap: 11px; opacity: 0.85;">
@@ -160,7 +199,7 @@
       </div>
       <div class="featured-scroll">
         <sc-for list="{{ featured }}" as="p" hint-placeholder-count="3">
-          <div data-reveal onClick="{{ p.open }}" class="featured-card" style="{{ p.cardStyle }}" style-hover="box-shadow: 0 24px 50px rgba(34,29,21,0.14); border-color: var(--accent);">
+          <div data-reveal data-tilt onClick="{{ p.open }}" class="featured-card" style="{{ p.cardStyle }}" style-hover="box-shadow: 0 24px 50px rgba(34,29,21,0.14); border-color: var(--accent);">
             <div class="featured-img" style="border-bottom: 1px solid rgba(34,29,21,0.12); background: #fff; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
               <img src="{{ p.img }}" alt="{{ p.title }}" style="width: 100%; height: 100%; object-fit: contain; display: block;">
               <span style="position: absolute; top: 16px; right: 16px; width: 42px; height: 42px; border-radius: 50%; background: var(--ink); color: #f6f1e7; display: flex; align-items: center; justify-content: center; font-size: 16px;">↗</span>
@@ -231,7 +270,7 @@
     <!-- ABOUT -->
     <section id="about" class="pad-x" data-screen-label="About" style="max-width: 1360px; margin: 0 auto; padding: 110px 48px;">
       <div class="about-grid" style="display: grid; grid-template-columns: 320px 1fr; gap: 72px; align-items: start;">
-        <img data-reveal src="./assets/images/portrait.jpg" alt="Thant Zin Min" style="width: 100%; aspect-ratio: 320 / 380; object-fit: cover; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; display: block;">
+        <img data-reveal data-tilt src="./assets/images/portrait.jpg" alt="Thant Zin Min" style="width: 100%; aspect-ratio: 320 / 380; object-fit: cover; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; display: block;">
         <div>
           <div data-reveal style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 28px;">
             <span style="font-family: var(--mono); font-size: 13px; color: var(--accent);">(04)</span>
@@ -276,7 +315,7 @@
       <p data-reveal style="font-size: 15px; color: #7a6f5d; margin: 0 0 40px; padding-left: 40px;">{{ t.certsSub }}</p>
       <div class="certs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
         <sc-for list="{{ certs }}" as="c" hint-placeholder-count="3">
-          <div data-reveal style="padding: 28px 26px; border: 1px solid rgba(34,29,21,0.15); border-radius: 20px; background: rgba(251,248,241,0.7); transition: all 0.25s;" style-hover="border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(34,29,21,0.09);">
+          <div data-reveal data-tilt style="padding: 28px 26px; border: 1px solid rgba(34,29,21,0.15); border-radius: 20px; background: rgba(251,248,241,0.7); transition: all 0.25s;" style-hover="border-color: var(--accent); box-shadow: 0 16px 36px rgba(34,29,21,0.09);">
             <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(162,103,58,0.14); font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; color: var(--accent); margin-bottom: 18px;">AWS</div>
             <div style="font-family: var(--df); font-size: 21px; line-height: 1.3; margin-bottom: 8px;">{{ c.name }}</div>
             <div style="font-size: 13.5px; line-height: 1.5; color: #7a6f5d; margin-bottom: 16px;">{{ c.issuer }}</div>
@@ -319,7 +358,7 @@
     <h1 style="font-family: var(--df); font-weight: 400; font-size: clamp(40px, 6vw, 72px); line-height: 1.06; margin: 0 0 32px;">{{ detail.title }}</h1>
     <p style="font-size: 19px; line-height: 1.65; color: #52493a; max-width: 720px; margin: 0 0 56px;">{{ detail.overview }}</p>
 
-    <div style="width: 100%; max-height: 480px; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; background: #fff; margin-bottom: 56px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <div data-tilt style="width: 100%; max-height: 480px; border: 1px solid rgba(34,29,21,0.2); border-radius: 24px; background: #fff; margin-bottom: 56px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
       <img src="{{ detail.img }}" alt="{{ detail.title }}" style="width: 100%; max-height: 480px; object-fit: contain; display: block;">
     </div>
 
@@ -365,6 +404,80 @@ class Component extends DCLogic {
     this.rootRef = (el) => { this.root = el; this.applyTheme(); };
     this.progressRef = (el) => { this.progress = el; };
     this.cursorRef = (el) => { this.cursor = el; };
+
+    this.statRef = (el) => {
+      if (!el || el.dataset.counted) return;
+      el.dataset.counted = '1';
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const pad = el.dataset.pad === '1';
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const dur = 1400, t0 = performance.now();
+      const fmt = (n) => (pad && n < 10 ? '0' + n : '' + n) + suffix;
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        el.textContent = fmt(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    this.heroCanvasRef = (el) => {
+      if (this.canvasRAF) { cancelAnimationFrame(this.canvasRAF); this.canvasRAF = null; }
+      this.heroCanvas = el;
+      if (!el) return;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const ctx = el.getContext('2d');
+      let w = 0, h = 0;
+      const fit = () => {
+        const r = el.getBoundingClientRect();
+        if (r.width === w && r.height === h) return;
+        w = r.width; h = r.height;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        el.width = w * dpr; el.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      fit();
+      const N = Math.max(24, Math.min(70, Math.floor((w * h) / 16000)));
+      const pts = Array.from({ length: N }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: 1 + Math.random() * 1.8, a: Math.random() < 0.25,
+      }));
+      const loop = () => {
+        if (!el.isConnected) { this.canvasRAF = null; return; }
+        fit();
+        ctx.clearRect(0, 0, w, h);
+        const rect = el.getBoundingClientRect();
+        const mx = this.pointer ? this.pointer.x - rect.left : -9999;
+        const my = this.pointer ? this.pointer.y - rect.top : -9999;
+        for (const p of pts) {
+          const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < 14400 && d2 > 0.01) { const f = 18 / d2; p.vx += dx * f * 0.06; p.vy += dy * f * 0.06; }
+          p.vx *= 0.995; p.vy *= 0.995;
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10; if (p.y > h + 10) p.y = -10;
+        }
+        ctx.lineWidth = 1;
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 12100) {
+              ctx.strokeStyle = 'rgba(34,29,21,' + (0.12 * (1 - d2 / 12100)).toFixed(3) + ')';
+              ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+            }
+          }
+        }
+        for (const p of pts) {
+          ctx.fillStyle = p.a ? 'rgba(162,103,58,0.5)' : 'rgba(34,29,21,0.32)';
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+        }
+        this.canvasRAF = requestAnimationFrame(loop);
+      };
+      loop();
+    };
 
     this.i18n = {
       en: {
@@ -555,7 +668,9 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onResize);
 
     if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       this.onMove = (e) => {
+        this.pointer = { x: e.clientX, y: e.clientY };
         if (!this.cursor) return;
         let scale = 1;
         const t = e.target;
@@ -569,6 +684,20 @@ class Component extends DCLogic {
       this.onLeave = () => { if (this.cursor) this.cursor.style.opacity = '0'; };
       window.addEventListener('mousemove', this.onMove, { passive: true });
       document.documentElement.addEventListener('mouseleave', this.onLeave);
+
+      if (!reduced) {
+        this.onTilt = (e) => {
+          const card = e.target && e.target.nodeType === 1 ? e.target.closest('[data-tilt]') : null;
+          if (this.tiltEl && this.tiltEl !== card) { this.tiltEl.style.transform = ''; this.tiltEl = null; }
+          if (!card) return;
+          this.tiltEl = card;
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          card.style.transform = 'perspective(900px) rotateX(' + (-py * 9).toFixed(2) + 'deg) rotateY(' + (px * 11).toFixed(2) + 'deg) translateY(-5px)';
+        };
+        window.addEventListener('mousemove', this.onTilt, { passive: true });
+      }
     }
   }
 
@@ -577,8 +706,10 @@ class Component extends DCLogic {
     window.removeEventListener('scroll', this.onScroll);
     if (this.onResize) window.removeEventListener('resize', this.onResize);
     if (this.onMove) window.removeEventListener('mousemove', this.onMove);
+    if (this.onTilt) window.removeEventListener('mousemove', this.onTilt);
     if (this.onLeave) document.documentElement.removeEventListener('mouseleave', this.onLeave);
     if (this.observer) this.observer.disconnect();
+    if (this.canvasRAF) cancelAnimationFrame(this.canvasRAF);
   }
 
   componentDidUpdate() {
@@ -668,6 +799,7 @@ class Component extends DCLogic {
 
     return {
       rootRef: this.rootRef, progressRef: this.progressRef, cursorRef: this.cursorRef,
+      statRef: this.statRef, heroCanvasRef: this.heroCanvasRef,
       t, langs, isHome, isDetail: !isHome,
       rotatingRole, marqueeItems,
       featured, filters, projects, detail,
